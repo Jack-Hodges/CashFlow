@@ -21,7 +21,7 @@ struct RegisterItem: View {
                 Text("\(roundTotal(from: item.price)) x \(itemCount)")
                     .font(.system(size: 20, weight: .light))
             }
-            .foregroundStyle(.white)
+            .foregroundStyle(.primary)
             
             Spacer()
             
@@ -41,7 +41,7 @@ struct RegisterItem: View {
         .padding()
         .frame(width: 380)
         .background(
-            Color.black
+            Color("BackgroundColor")
                 .clipShape(RoundedRectangle(cornerRadius: 20))
         )
     }

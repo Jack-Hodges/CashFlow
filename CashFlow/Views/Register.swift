@@ -9,19 +9,17 @@ import SwiftUI
 
 struct Register: View {
     
-    var lightGray = Color(red: 0.929, green: 0.929, blue: 0.929) // #ededed
-    var darkGray = Color(red: 0.322, green: 0.322, blue: 0.322) // #525252
     @ObservedObject var sale: Sale
     
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 25)
-                .foregroundStyle(darkGray)
+                .foregroundStyle(Color("LighterBackgroundColor"))
             VStack {
                 HStack {
                     Text("Items (\(sale.items.count))")
                         .font(.system(size: 40, weight: .bold))
-                        .foregroundStyle(.white)
+                        .foregroundStyle(.primary)
                     Spacer()
                 }
                 
@@ -43,11 +41,12 @@ struct Register: View {
                     }
                     .font(.system(size: 30, weight: .medium))
                 }
-                .foregroundStyle(.white)
+                .foregroundStyle(.primary)
                 
                 HStack {
                     ZStack {
                         RoundedRectangle(cornerRadius: 100)
+                            .foregroundStyle(Color("BackgroundColor"))
                             
                         HStack {
                             Image(systemName: "creditcard.fill")
@@ -56,7 +55,7 @@ struct Register: View {
                         }
                         .font(.system(size: 25, weight: .bold))
                         .padding()
-                        .foregroundStyle(.white)
+                        .foregroundStyle(.primary)
                     }
                     .frame(width: 180, height: 60)
                     
@@ -64,6 +63,7 @@ struct Register: View {
                     
                     ZStack {
                         RoundedRectangle(cornerRadius: 100)
+                            .foregroundStyle(Color("BackgroundColor"))
                             
                         HStack {
                             Image(systemName: "creditcard.fill")
@@ -72,7 +72,7 @@ struct Register: View {
                         }
                         .font(.system(size: 25, weight: .bold))
                         .padding()
-                        .foregroundStyle(.white)
+                        .foregroundStyle(.primary)
                     }
                     .frame(width: 180, height: 60)
                 }

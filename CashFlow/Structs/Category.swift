@@ -20,7 +20,7 @@ struct Category: Identifiable, Equatable {
 }
 
 var sampleCategories = [
-    Category(name: "Hot Food", color: Color(red: 0.808, green: 0.686, blue: 0.878), items: sampleHotFood),
+    Category(name: "Hot Food", color: Color(red: 0.808, green: 0.561, blue: 1), items: sampleHotFood),
     Category(name: "Cold Food", color: Color.purple, items: sampleColdFood),
     Category(name: "Hot Drinks", color: Color.pink, items: sampleHotDrinks),
     Category(name: "Cold Drinks", color: Color.red, items: sampleColdDrinks),

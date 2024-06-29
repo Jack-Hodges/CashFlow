@@ -10,15 +10,12 @@ import SwiftUI
 struct SaleItem: View {
     
     var item: Item
-    var lightGray = Color(red: 0.929, green: 0.929, blue: 0.929) // #ededed
-    var darkGray = Color(red: 0.322, green: 0.322, blue: 0.322) // #525252
-    var lightBlue = Color(red: 0.455, green: 0.686, blue: 0.769) // #74afc4
     @State var user: User
     
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 10)
-                .fill(darkGray)
+                .fill(Color("LighterBackgroundColor"))
             
             VStack {
                 HStack {
@@ -33,7 +30,7 @@ struct SaleItem: View {
                 HStack {
                     Text(roundTotal(from: item.price))
                         .font(.system(size: 25))
-                        .foregroundStyle(.white)
+                        .foregroundStyle(.primary)
                     Spacer()
                 }
             }

@@ -16,22 +16,17 @@ struct ContentView: View {
     @State var currCategory: Category = sampleCategories[0]
     @State var sale: Sale = Sale()
     
-    static let color0 = Color(red: 0/255, green: 188/255, blue: 212/255);
-    static let color1 = Color(red: 130/255, green: 145/255, blue: 238/255);
-    
     let columns = [
                 GridItem(.flexible()),
                 GridItem(.flexible()),
                 GridItem(.flexible()),
                 GridItem(.flexible())
             ]
-
-    let gradient = Gradient(colors: [color0, color1]);
     
     var body: some View {
         ZStack {
             Rectangle()
-                .fill(.black)
+                .fill(Color("BackgroundColor"))
                 .ignoresSafeArea()
             
             HStack {
