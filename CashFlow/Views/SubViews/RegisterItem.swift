@@ -30,12 +30,7 @@ struct RegisterItem: View {
                 .foregroundStyle(.red)
                 .onTapGesture {
                     // subtract the value of the items we are removing and remove them
-                    if let index = sale.items.firstIndex(where: { $0.0.id == item.id }) {
-                        let (removedItem, removedCount) = sale.items[index]
-                        let removedTotal = removedItem.price * Double(removedCount)
-                        sale.total -= removedTotal
-                        sale.items.remove(at: index)
-                    }
+                    sale.removeItem(item)
                 }
         }
         .padding()

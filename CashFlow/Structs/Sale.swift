@@ -20,4 +20,28 @@ class Sale: ObservableObject {
         }
         total += item.price
     }
+    
+    func removeItem(_ item: Item) {
+        if let index = items.firstIndex(where: { $0.0.id == item.id }) {
+            let (removedItem, removedCount) = items[index]
+            let removedTotal = removedItem.price * Double(removedCount)
+            total -= removedItem.price
+            items[index].1 -= 1
+            
+            if items[index].1 == 0 {
+                items.remove(at: index)
+            }
+        }
+    }
+    
+    func getItemCount() -> Int {
+        
+        var total: Int = 0
+        
+        for item in items {
+            total += item.1
+        }
+        
+        return total
+    }
 }

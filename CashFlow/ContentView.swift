@@ -68,7 +68,7 @@ struct ContentView: View {
                 .frame(width: UIScreen.main.bounds.width * 2/3 + 10)
                 
                 Spacer()
-                Register(sale: sale)
+                Register(sale: sale, user: user)
                     .padding(.trailing, 20)
             }
         }

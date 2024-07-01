@@ -10,6 +10,7 @@ import SwiftUI
 struct Register: View {
     
     @ObservedObject var sale: Sale
+    @State var user: User
     
     var body: some View {
         ZStack {
@@ -17,15 +18,26 @@ struct Register: View {
                 .foregroundStyle(Color("LighterBackgroundColor"))
             VStack {
                 HStack {
-                    Text("Items (\(sale.items.count))")
+                    Text("Items (\(sale.getItemCount()))")
                         .font(.system(size: 40, weight: .bold))
                         .foregroundStyle(.primary)
                     Spacer()
                 }
                 
                 ScrollView(showsIndicators: false) {
-                    ForEach(sale.items, id: \.0.id) { (item, itemCount) in
-                        RegisterItem(item: item, itemCount: itemCount, sale: sale)
+                    ForEach(groupedItems, id: \.key) { category, items in
+                        VStack(alignment: .leading) {
+                            Text(category)
+                                .font(.system(size: 30, weight: .bold))
+                                .foregroundStyle(getCategoryColor(from: category, user: user))
+                                .padding(.bottom, -5)
+                                .padding(.top, -5)
+                            
+                            ForEach(items, id: \.0.id) { (item, itemCount) in
+                                RegisterItem(item: item, itemCount: itemCount, sale: sale)
+                            }
+                        }
+                        .padding(.bottom)
                     }
                 }
                 
@@ -81,8 +93,14 @@ struct Register: View {
         }
         .frame(width: UIScreen.main.bounds.width * 1/3 - 50)
     }
+    
+    // create a dictionary that groups all items by their category name, so we can categorise them in register view
+    private var groupedItems: [(key: String, value: [(Item, Int)])] {
+        Dictionary(grouping: sale.items, by: { $0.0.categoryName })
+            .sorted(by: { $0.key < $1.key })
+    }
 }
 
 #Preview {
-    Register(sale: Sale())
+    Register(sale: Sale(), user: sampleUser[0])
 }
