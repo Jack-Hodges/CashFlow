@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-struct Category: Identifiable, Equatable {
+struct Category: Identifiable, Equatable, Hashable {
     static func == (lhs: Category, rhs: Category) -> Bool {
         lhs.id == rhs.id && lhs.name == rhs.name
     }
