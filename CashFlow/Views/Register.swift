@@ -46,48 +46,49 @@ struct Register: View {
                 VStack(alignment: .leading) {
                     Text("Payment Summary")
                         .font(.system(size: 40, weight: .bold))
+                    
+                    // surcharges
+                    HStack {
+                        Text("Surcharge")
+                        Spacer()
+                        Text("0%")
+                    }
+                    .font(.system(size: 20, weight: .medium))
+                    
+                    // discounts
+                    HStack {
+                        Text("Discount")
+                        Spacer()
+                        Text("0%")
+                    }
+                    .font(.system(size: 20, weight: .medium))
+                    
+                    
+                    // total price
                     HStack {
                         Text("Price")
                         Spacer()
                         Text("\(roundTotal(from: sale.total))")
                     }
                     .font(.system(size: 30, weight: .medium))
+                    
                 }
                 .foregroundStyle(.primary)
                 
-                HStack {
-                    ZStack {
-                        RoundedRectangle(cornerRadius: 100)
-                            .foregroundStyle(Color("BackgroundColor"))
-                            
-                        HStack {
-                            Image(systemName: "creditcard.fill")
-                            Spacer()
-                            Text("Card")
-                        }
-                        .font(.system(size: 25, weight: .bold))
-                        .padding()
-                        .foregroundStyle(.primary)
-                    }
-                    .frame(width: 180, height: 60)
+                ZStack {
+                    RoundedRectangle(cornerRadius: 100)
+                        .foregroundStyle(Color("BackgroundColor"))
                     
-                    Spacer()
-                    
-                    ZStack {
-                        RoundedRectangle(cornerRadius: 100)
-                            .foregroundStyle(Color("BackgroundColor"))
-                            
-                        HStack {
-                            Image(systemName: "creditcard.fill")
-                            Spacer()
-                            Text("Cash")
-                        }
-                        .font(.system(size: 25, weight: .bold))
-                        .padding()
-                        .foregroundStyle(.primary)
+                    HStack {
+                        Image(systemName: "creditcard.fill")
+                        Text("Pay")
+                        Spacer()
                     }
-                    .frame(width: 180, height: 60)
+                    .font(.system(size: 25, weight: .bold))
+                    .padding()
+                    .foregroundStyle(.primary)
                 }
+                .frame(width: 370, height: 60)
             }
             .padding()
         }
