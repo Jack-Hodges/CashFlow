@@ -9,12 +9,19 @@ import SwiftUI
 
 struct ContentView: View {
     
-    let user: User = sampleUser[0]
+    @State private var user: User
     
-    let items: [Item] = sampleItems
-    let categories: [Category] = sampleCategories
-    @State var currCategory: Category = sampleCategories[0]
+    let items: [Item]
+    @State var currCategory: Category
     @State var sale: Sale = Sale()
+    
+    @State private var showingAddItem = false
+    
+    init(user: User) {
+        self.user = user
+        self.items = sampleItems
+        self._currCategory = State(initialValue: user.category[0])
+    }
     
     let columns = [
                 GridItem(.flexible()),
@@ -35,7 +42,7 @@ struct ContentView: View {
                     
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack {
-                            ForEach (categories) { category in
+                            ForEach (user.category) { category in
                                 CategoryView(category: category)
                                     .onTapGesture {
                                         currCategory = category
@@ -56,6 +63,9 @@ struct ContentView: View {
                                     }
                             }
                             EditButton(width: 220, height: 175, text: "Add Item")
+                                .onTapGesture {
+                                    showingAddItem = true
+                                }
                         }
                         .padding(.leading)
                         .padding(.top, 20)
@@ -71,10 +81,18 @@ struct ContentView: View {
                 Register(sale: sale, user: user)
                     .padding(.trailing, 20)
             }
+            .sheet(isPresented: $showingAddItem, onDismiss: refreshCurrCategory) {
+                AddItem(user: $user, category: $currCategory)
+            }
+        }
+    }
+    func refreshCurrCategory() {
+        if let updatedCategory = user.category.first(where: { $0.id == currCategory.id }) {
+            currCategory = updatedCategory
         }
     }
 }
 
 #Preview {
-    ContentView()
+    ContentView(user: sampleUser[0])
 }
